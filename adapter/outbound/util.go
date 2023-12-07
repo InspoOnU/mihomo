@@ -89,8 +89,7 @@ func resolveUDPAddrWithPrefer(ctx context.Context, network, address string, pref
 				}
 			}
 		}
-	default:
-		// C.IPv4Prefer, C.DualStack and other
+	case C.IPv4Prefer | C.DualStack:
 		var ips []netip.Addr
 		ips, err = resolver.LookupIPProxyServerHost(ctx, host)
 		if err == nil {
