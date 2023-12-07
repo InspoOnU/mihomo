@@ -507,7 +507,7 @@ func handleTCPConn(connCtx C.ConnContext) {
 	ctx, cancel := context.WithTimeout(context.Background(), C.DefaultTCPTimeout)
 	defer cancel()
 	remoteConn, err := retry(ctx, func(ctx context.Context) (remoteConn C.Conn, err error) {
-		remoteConn, err = proxy.DialContext(ctx, dialMetadata)
+		remoteConn, err := proxy.DialContext(ctx, metadata.Pure())
 		if err != nil {
 			return
 		}
